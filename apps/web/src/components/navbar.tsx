@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe, User } from "lucide-react";
 import { Logo } from "./logo";
 import {
   MegaMenuDropdown,
@@ -57,26 +57,40 @@ export function Navbar() {
           <MegaMenuDropdown label="Business" sections={businessMenu} />
         </div>
 
-        {/* Right: Learn + Language + Sign Up + CTA */}
-        <div className="hidden xl:flex items-center gap-3">
+        {/* Right: Learn + Language + Auth + CTA */}
+        <div className="hidden xl:flex items-center gap-1.5">
           <Link
             href="/learn"
-            className="text-[13px] font-medium text-slate-600 hover:text-navy transition-colors"
+            className="text-[13px] font-medium text-slate-600 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
           >
             Learn
           </Link>
-          <button className="text-xs text-slate-400 hover:text-navy font-medium transition-colors">
-            العربية
+
+          {/* Divider */}
+          <div className="w-px h-4 bg-slate-200 mx-1" />
+
+          {/* Language toggle */}
+          <button className="flex items-center gap-1.5 text-[13px] text-slate-500 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all">
+            <Globe className="w-3.5 h-3.5" />
+            <span className="font-medium">AR</span>
           </button>
+
+          {/* Log In */}
           <Link
             href="/signup"
-            className="text-[13px] font-medium text-slate-600 hover:text-navy transition-colors"
+            className="flex items-center gap-1.5 text-[13px] font-medium text-slate-600 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
           >
-            Sign Up
+            <User className="w-3.5 h-3.5" />
+            Log In
           </Link>
+
+          {/* Divider */}
+          <div className="w-px h-4 bg-slate-200 mx-1" />
+
+          {/* CTA */}
           <Link
             href="/eligibility"
-            className="bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark hover:shadow-lg hover:-translate-y-px transition-all duration-200"
+            className="bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark hover:shadow-lg hover:-translate-y-px transition-all duration-200 ml-0.5"
           >
             Check Eligibility
           </Link>
@@ -116,21 +130,32 @@ export function Navbar() {
               {item.key.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
             </Link>
           ))}
-          <div className="flex gap-2 mt-4">
-            <Link
-              href="/signup"
-              className="flex-1 block border border-slate-200 text-slate-700 text-sm font-semibold px-5 py-2.5 rounded-xl text-center hover:border-navy hover:text-navy transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              Sign Up
-            </Link>
-            <Link
-              href="/eligibility"
-              className="flex-1 block bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-xl text-center"
-              onClick={() => setMobileOpen(false)}
-            >
-              Check Eligibility
-            </Link>
+
+          {/* Mobile bottom actions */}
+          <div className="pt-4 mt-2 border-t border-slate-100 space-y-2.5">
+            {/* Language toggle */}
+            <button className="flex items-center gap-2 text-sm text-slate-500 py-1">
+              <Globe className="w-4 h-4" />
+              العربية
+            </button>
+
+            <div className="flex gap-2">
+              <Link
+                href="/signup"
+                className="flex-1 flex items-center justify-center gap-2 border border-slate-200 text-slate-700 text-sm font-semibold px-5 py-2.5 rounded-xl hover:border-navy hover:text-navy transition-colors"
+                onClick={() => setMobileOpen(false)}
+              >
+                <User className="w-4 h-4" />
+                Log In
+              </Link>
+              <Link
+                href="/eligibility"
+                className="flex-1 block bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-xl text-center"
+                onClick={() => setMobileOpen(false)}
+              >
+                Check Eligibility
+              </Link>
+            </div>
           </div>
         </div>
       )}
