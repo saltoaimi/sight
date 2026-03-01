@@ -1,0 +1,33 @@
+{
+  "name": "@sight/api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "db:seed-real": "tsx src/db/seed-real-data.ts"
+  },
+  "dependencies": {
+    "@sight/shared": "workspace:*",
+    "@sight/validators": "workspace:*",
+    "@neondatabase/serverless": "^0.10.0",
+    "drizzle-orm": "^0.39.0",
+    "fastify": "^5.2.0",
+    "@fastify/cors": "^11.0.0",
+    "dotenv": "^16.4.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.30.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
