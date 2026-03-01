@@ -1,12 +1,8 @@
-import { fetchAPI, type ProductListResponse } from "@/lib/api";
 import { getStaticProducts } from "@/lib/static-products";
 import { ProductFilters } from "@/components/product-filters";
-import { PRODUCT_CATEGORIES } from "@sight/shared";
 import { getTranslations } from "next-intl/server";
 
-export async function generateStaticParams() {
-  return Object.values(PRODUCT_CATEGORIES).map((category) => ({ category }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -23,6 +19,25 @@ export async function generateMetadata({
   };
 }
 
+async function loadProducts(category: string): Promise<any[]> {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (apiUrl && !apiUrl.includes("localhost")) {
+    try {
+      const res = await fetch(`${apiUrl}/api/v1/products?category=${category}&limit=100`, {
+        headers: { "Content-Type": "application/json" },
+        next: { revalidate: 300 },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.data && data.data.length > 0) return data.data;
+      }
+    } catch {
+      // fall through to static
+    }
+  }
+  return getStaticProducts(category);
+}
+
 export default async function CategoryPage({
   params,
 }: {
@@ -30,19 +45,7 @@ export default async function CategoryPage({
 }) {
   const { locale, category } = await params;
   const t = await getTranslations({ locale });
-
-  let products: any[] = [];
-
-  try {
-    const response = await fetchAPI<ProductListResponse>(
-      `/api/v1/products?category=${category}&limit=100`
-    );
-    products = response.data;
-  } catch {
-    // API unavailable — use static fallback data
-    products = getStaticProducts(category);
-  }
-
+  const products = await loadProducts(category);
   const categoryName = t(`categories.${category}` as any);
 
   return (
