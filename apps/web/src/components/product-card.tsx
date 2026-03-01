@@ -101,7 +101,6 @@ function getFees(product: any): { name: string; value: string }[] {
 
 const INSURANCE_CATEGORIES = ["car_insurance", "health_insurance", "travel_insurance", "life_insurance", "home_insurance"];
 const PRODUCT_IMAGE_CATEGORIES = ["credit_card", "mobile_plan"];
-const SHORY_URL = "https://shory.com";
 
 export function ProductCard({ product, locale }: { product: any; locale: string }) {
   const [expanded, setExpanded] = useState(false);
@@ -110,7 +109,7 @@ export function ProductCard({ product, locale }: { product: any; locale: string 
   const highlights = getHighlights(product);
   const isInsurance = INSURANCE_CATEGORIES.includes(product.category);
   const hasProductImage = product.imageUrl && PRODUCT_IMAGE_CATEGORIES.includes(product.category);
-  const applyUrl = isInsurance ? SHORY_URL : product.provider?.website || "#";
+  const applyUrl = "/signup";
   const logoUrl = product.provider?.logoUrl;
   const details = getDetails(product);
   const allFeatures = getAllFeatures(product);
@@ -215,11 +214,9 @@ export function ProductCard({ product, locale }: { product: any; locale: string 
           <div className="mt-5 flex items-center gap-3">
             <a
               href={applyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="text-sm font-semibold text-white bg-green rounded-lg px-6 py-2.5 hover:bg-emerald-700 transition-all duration-200 inline-block"
             >
-              {isInsurance ? "Get Quote" : "Apply Now"}
+              Apply Now
             </a>
             <button
               onClick={() => setExpanded(!expanded)}
