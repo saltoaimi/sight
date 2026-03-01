@@ -128,7 +128,8 @@ export function EligibilityWidget() {
         employmentType: finalAnswers.employmentType as string | undefined,
       });
       setResults(data.data || []);
-    } catch {
+    } catch (err) {
+      console.error("[Sight Widget] eligibility check failed:", err);
       setResults([]);
     } finally {
       setLoading(false);

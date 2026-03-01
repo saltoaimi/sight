@@ -186,5 +186,17 @@ export function checkEligibility(answers: EligibilityAnswers): {
   };
   results.sort((a, b) => order[a.status] - order[b.status]);
 
+  const counts = {
+    pre_approved: results.filter((r) => r.status === "pre_approved").length,
+    likely_eligible: results.filter((r) => r.status === "likely_eligible").length,
+    not_eligible: results.filter((r) => r.status === "not_eligible").length,
+    apply: results.filter((r) => r.status === "apply").length,
+  };
+  console.log("[Sight Eligibility]", {
+    category: answers.category,
+    productsFound: products.length,
+    results: counts,
+  });
+
   return { data: results, total: results.length };
 }
