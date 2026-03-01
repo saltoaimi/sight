@@ -79,9 +79,11 @@ const statusConfig = {
   apply: { label: "Apply", color: "text-slate-600 bg-slate-100", icon: ArrowRight },
 };
 
-function fmtRate(val: number): string {
-  if (Number.isInteger(val)) return String(val);
-  return val.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+function fmtRate(val: number | string): string {
+  const n = typeof val === "string" ? parseFloat(val) : val;
+  if (isNaN(n)) return String(val);
+  if (Number.isInteger(n)) return String(n);
+  return n.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
 }
 
 export function EligibilityWidget() {
