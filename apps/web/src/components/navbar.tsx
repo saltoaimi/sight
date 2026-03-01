@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Menu, X, Globe, User } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { Logo } from "./logo";
 import {
   MegaMenuDropdown,
@@ -58,7 +58,7 @@ export function Navbar() {
         </div>
 
         {/* Right: Learn + Language + Auth + CTA */}
-        <div className="hidden xl:flex items-center gap-1.5">
+        <div className="hidden xl:flex items-center gap-2">
           <Link
             href="/learn"
             className="text-[13px] font-medium text-slate-600 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
@@ -66,31 +66,27 @@ export function Navbar() {
             Learn
           </Link>
 
-          {/* Divider */}
-          <div className="w-px h-4 bg-slate-200 mx-1" />
-
           {/* Language toggle */}
           <button className="flex items-center gap-1.5 text-[13px] text-slate-500 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all">
             <Globe className="w-3.5 h-3.5" />
             <span className="font-medium">AR</span>
           </button>
 
-          {/* Log In */}
-          <Link
-            href="/signup"
-            className="flex items-center gap-1.5 text-[13px] font-medium text-slate-600 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
-          >
-            <User className="w-3.5 h-3.5" />
-            Log In
-          </Link>
-
           {/* Divider */}
           <div className="w-px h-4 bg-slate-200 mx-1" />
+
+          {/* Sign Up */}
+          <Link
+            href="/signup"
+            className="text-xs font-semibold text-navy border border-navy/20 px-4 py-2 rounded-lg hover:bg-navy hover:text-white hover:-translate-y-px transition-all duration-200"
+          >
+            Sign Up
+          </Link>
 
           {/* CTA */}
           <Link
             href="/eligibility"
-            className="bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark hover:shadow-lg hover:-translate-y-px transition-all duration-200 ml-0.5"
+            className="bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark hover:shadow-lg hover:-translate-y-px transition-all duration-200"
           >
             Check Eligibility
           </Link>
@@ -142,11 +138,10 @@ export function Navbar() {
             <div className="flex gap-2">
               <Link
                 href="/signup"
-                className="flex-1 flex items-center justify-center gap-2 border border-slate-200 text-slate-700 text-sm font-semibold px-5 py-2.5 rounded-xl hover:border-navy hover:text-navy transition-colors"
+                className="flex-1 text-center border border-navy/20 text-navy text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-navy hover:text-white transition-all"
                 onClick={() => setMobileOpen(false)}
               >
-                <User className="w-4 h-4" />
-                Log In
+                Sign Up
               </Link>
               <Link
                 href="/eligibility"
