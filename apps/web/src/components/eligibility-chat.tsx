@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, User, Bot, Loader2 } from "lucide-react";
+import { checkEligibility } from "@/lib/eligibility-engine";
 
 interface Question {
   id: string;
@@ -195,18 +196,20 @@ export function EligibilityChat() {
     }
   }
 
-  async function submitEligibility(finalAnswers: Record<string, string | number>) {
+  function submitEligibility(finalAnswers: Record<string, string | number>) {
     const payload = { type: userType, ...finalAnswers };
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/api/v1/eligibility/check`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        },
-      );
-      const data = await res.json();
+      const data = checkEligibility({
+        type: userType as "personal" | "business",
+        category: finalAnswers.category as string,
+        salary: finalAnswers.salary as number | undefined,
+        nationality: finalAnswers.nationality as string | undefined,
+        employmentType: finalAnswers.employmentType as string | undefined,
+        employmentMonths: finalAnswers.employmentMonths as number | undefined,
+        age: finalAnswers.age as number | undefined,
+        businessRevenue: finalAnswers.businessRevenue as number | undefined,
+        businessAgeMonths: finalAnswers.businessAgeMonths as number | undefined,
+      });
       const approved = (data.data || []).filter(
         (r: any) => r.status === "pre_approved" || r.status === "likely_eligible"
       );

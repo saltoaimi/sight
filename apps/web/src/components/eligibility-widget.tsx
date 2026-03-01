@@ -6,6 +6,7 @@ import {
   Sparkles, ChevronRight, CheckCircle, XCircle, Info,
   Loader2, ArrowRight, RotateCcw,
 } from "lucide-react";
+import { checkEligibility } from "@/lib/eligibility-engine";
 
 interface MatchResult {
   product: {
@@ -116,18 +117,16 @@ export function EligibilityWidget() {
     }
   }
 
-  async function runCheck(finalAnswers: Record<string, string | number>) {
+  function runCheck(finalAnswers: Record<string, string | number>) {
     setLoading(true);
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/api/v1/eligibility/check`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ type: "personal", ...finalAnswers }),
-        },
-      );
-      const data = await res.json();
+      const data = checkEligibility({
+        type: "personal",
+        category: finalAnswers.category as string,
+        salary: finalAnswers.salary as number | undefined,
+        nationality: finalAnswers.nationality as string | undefined,
+        employmentType: finalAnswers.employmentType as string | undefined,
+      });
       setResults(data.data || []);
     } catch {
       setResults([]);
