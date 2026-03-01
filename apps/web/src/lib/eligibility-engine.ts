@@ -39,10 +39,22 @@ const EMPLOYMENT_MAP: Record<string, string[]> = {
 
 function matchesNationality(userValue: string, allowed: string[]): boolean {
   if (!allowed || allowed.length === 0) return true;
-  if (allowed.some((a) => a.toLowerCase() === "any")) return true;
+  // Treat common wildcard values as "open to all"
+  const wildcards = ["any", "all", "all nationalities"];
+  if (allowed.some((a) => wildcards.includes(a.toLowerCase()))) return true;
   const mapped = NATIONALITY_MAP[userValue] || [userValue];
   return mapped.some((v) =>
-    allowed.some((a) => a.toLowerCase() === v.toLowerCase())
+    allowed.some((a) => {
+      const al = a.toLowerCase();
+      const vl = v.toLowerCase();
+      // Exact match
+      if (al === vl) return true;
+      // "UAE nationals" should match "UAE National"
+      if (al.replace(/s$/, "") === vl.replace(/s$/, "")) return true;
+      // "UAE residents" should match expats/residents
+      if (al === "uae residents" && (vl === "expatriate" || vl === "expat / resident")) return true;
+      return false;
+    })
   );
 }
 
@@ -141,6 +153,9 @@ function matchProduct(product: any, answers: EligibilityAnswers): MatchResult {
   } else if (unmet.length === 1 && unmet[0].includes("close")) {
     status = "likely_eligible";
   } else if (unmet.length === 1 && unmet[0].includes("salary")) {
+    status = "likely_eligible";
+  } else if (unmet.length === 1) {
+    // Only one non-salary criterion unmet — still worth showing
     status = "likely_eligible";
   } else {
     status = "not_eligible";
