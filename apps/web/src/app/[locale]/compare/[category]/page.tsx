@@ -1,4 +1,5 @@
 import { fetchAPI, type ProductListResponse } from "@/lib/api";
+import { getStaticProducts } from "@/lib/static-products";
 import { ProductFilters } from "@/components/product-filters";
 import { PRODUCT_CATEGORIES } from "@sight/shared";
 import { getTranslations } from "next-intl/server";
@@ -31,7 +32,6 @@ export default async function CategoryPage({
   const t = await getTranslations({ locale });
 
   let products: any[] = [];
-  let error = false;
 
   try {
     const response = await fetchAPI<ProductListResponse>(
@@ -39,7 +39,8 @@ export default async function CategoryPage({
     );
     products = response.data;
   } catch {
-    error = true;
+    // API unavailable — use static fallback data
+    products = getStaticProducts(category);
   }
 
   const categoryName = t(`categories.${category}` as any);
@@ -62,16 +63,7 @@ export default async function CategoryPage({
         </p>
       </div>
 
-      {error ? (
-        <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
-          <p className="text-slate-600 font-medium">
-            Could not load products. Make sure the API server is running on port 3001.
-          </p>
-          <p className="text-slate-400 text-sm mt-2">
-            Run: <code className="bg-slate-100 px-2 py-1 rounded">pnpm --filter @sight/api dev</code>
-          </p>
-        </div>
-      ) : products.length === 0 ? (
+      {products.length === 0 ? (
         <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center">
           <p className="text-slate-400">{t("common.noResults")}</p>
         </div>
