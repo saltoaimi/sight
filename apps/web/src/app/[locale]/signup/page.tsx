@@ -18,7 +18,7 @@ export default function SignUpPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [mode, setMode] = useState<"signup" | "login">("signup");
+  const [mode, setMode] = useState<"signup" | "login">("login");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

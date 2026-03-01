@@ -75,12 +75,12 @@ export function Navbar() {
           {/* Divider */}
           <div className="w-px h-4 bg-slate-200 mx-1" />
 
-          {/* Sign Up */}
+          {/* Sign In */}
           <Link
             href="/signup"
             className="text-xs font-semibold text-navy border border-navy/20 px-4 py-2 rounded-lg hover:bg-navy hover:text-white hover:-translate-y-px transition-all duration-200"
           >
-            Sign Up
+            Sign In
           </Link>
 
           {/* CTA */}
@@ -141,7 +141,7 @@ export function Navbar() {
                 className="flex-1 text-center border border-navy/20 text-navy text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-navy hover:text-white transition-all"
                 onClick={() => setMobileOpen(false)}
               >
-                Sign Up
+                Sign In
               </Link>
               <Link
                 href="/eligibility"
