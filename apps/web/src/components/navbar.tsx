@@ -2,23 +2,34 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Menu, X, Globe } from "lucide-react";
+import type { Country } from "@sight/shared";
+import { CATEGORY_AVAILABILITY } from "@sight/shared";
 import { Logo } from "./logo";
 import {
   MegaMenuDropdown,
   loansMenu,
   cardsMenu,
   insuranceMenu,
-  savingsMenu,
+  bankingMenu,
+  investingMenu,
+  digitalFinanceMenu,
   telecomMenu,
   businessMenu,
+  getMenusForCountry,
 } from "./mega-menu";
 
-export function Navbar() {
+export function Navbar({ country }: { country: Country }) {
   const t = useTranslations();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Extract locale from pathname (e.g., /ae/en/compare/... → en)
+  const segments = pathname.split("/").filter(Boolean);
+  const locale = segments[1] || "en";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -26,14 +37,23 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const filtered = getMenusForCountry(country);
+
   const personalMobile = [
-    ...loansMenu.flatMap((s) => s.items),
-    ...cardsMenu.flatMap((s) => s.items),
-    ...insuranceMenu.flatMap((s) => s.items),
-    ...savingsMenu.flatMap((s) => s.items),
-    ...telecomMenu.flatMap((s) => s.items),
+    ...filtered.loans.flatMap((s) => s.items),
+    ...filtered.cards.flatMap((s) => s.items),
+    ...filtered.insurance.flatMap((s) => s.items),
+    ...filtered.banking.flatMap((s) => s.items),
+    ...filtered.investing.flatMap((s) => s.items),
+    ...filtered.digitalFinance.flatMap((s) => s.items),
+    ...filtered.telecom.flatMap((s) => s.items),
   ];
-  const businessMobile = businessMenu.flatMap((s) => s.items);
+  const businessMobile = filtered.business.flatMap((s) => s.items);
+
+  // Country switcher: swap country code in current path
+  const otherCountry = country === "ae" ? "sa" : "ae";
+  const restPath = pathname.replace(/^\/(ae|sa)\/[a-z]{2}/, "");
+  const switchCountryHref = `/${otherCountry}/${locale}${restPath}`;
 
   return (
     <header
@@ -43,27 +63,38 @@ export function Navbar() {
     >
       <nav className="max-w-[1280px] mx-auto px-5 md:px-10 flex items-center justify-between h-14">
         {/* Left: Logo */}
-        <Link href="/" className="shrink-0">
+        <Link href={`/${country}/${locale}`} className="shrink-0">
           <Logo variant="dark" />
         </Link>
 
         {/* Center: Category mega menus (desktop) */}
         <div className="hidden xl:flex items-center gap-5">
-          <MegaMenuDropdown label="Loans" sections={loansMenu} />
-          <MegaMenuDropdown label="Cards" sections={cardsMenu} />
-          <MegaMenuDropdown label="Insurance" sections={insuranceMenu} />
-          <MegaMenuDropdown label="Savings & Investments" sections={savingsMenu} />
-          <MegaMenuDropdown label="Telecom" sections={telecomMenu} />
-          <MegaMenuDropdown label="Business" sections={businessMenu} />
+          <MegaMenuDropdown label="Loans" sections={filtered.loans} country={country} />
+          <MegaMenuDropdown label="Cards" sections={filtered.cards} country={country} />
+          <MegaMenuDropdown label="Insurance" sections={filtered.insurance} country={country} />
+          <MegaMenuDropdown label="Banking" sections={filtered.banking} country={country} />
+          <MegaMenuDropdown label="Investing" sections={filtered.investing} country={country} />
+          <MegaMenuDropdown label="Digital Finance" sections={filtered.digitalFinance} country={country} />
+          <MegaMenuDropdown label="Telecom" sections={filtered.telecom} country={country} />
+          <MegaMenuDropdown label="Business" sections={filtered.business} country={country} />
         </div>
 
-        {/* Right: Learn + Language + Auth + CTA */}
+        {/* Right: Learn + Country + Language + Auth + CTA */}
         <div className="hidden xl:flex items-center gap-2">
           <Link
-            href="/learn"
+            href={`/${country}/${locale}/learn`}
             className="text-[13px] font-medium text-slate-600 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
           >
             Learn
+          </Link>
+
+          {/* Country toggle */}
+          <Link
+            href={switchCountryHref}
+            className="flex items-center gap-1.5 text-[13px] text-slate-500 hover:text-navy px-2.5 py-1.5 rounded-lg hover:bg-slate-50 transition-all"
+          >
+            <span>{country === "ae" ? "\uD83C\uDDF8\uD83C\uDDE6" : "\uD83C\uDDE6\uD83C\uDDEA"}</span>
+            <span className="font-medium">{country === "ae" ? "KSA" : "UAE"}</span>
           </Link>
 
           {/* Language toggle */}
@@ -77,7 +108,7 @@ export function Navbar() {
 
           {/* Sign In */}
           <Link
-            href="/signup"
+            href={`/${country}/${locale}/signup`}
             className="text-xs font-semibold text-navy border border-navy/20 px-4 py-2 rounded-lg hover:bg-navy hover:text-white hover:-translate-y-px transition-all duration-200"
           >
             Sign In
@@ -85,7 +116,7 @@ export function Navbar() {
 
           {/* CTA */}
           <Link
-            href="/eligibility"
+            href={`/${country}/${locale}/eligibility`}
             className="bg-navy text-white text-xs font-semibold px-4 py-2 rounded-lg hover:bg-navy-dark hover:shadow-lg hover:-translate-y-px transition-all duration-200"
           >
             Check Eligibility
@@ -108,7 +139,7 @@ export function Navbar() {
           {personalMobile.map((item) => (
             <Link
               key={item.key}
-              href={`/compare/${item.key}`}
+              href={`/${country}/${locale}/compare/${item.key}`}
               className="block text-sm text-slate-700 py-1"
               onClick={() => setMobileOpen(false)}
             >
@@ -119,7 +150,7 @@ export function Navbar() {
           {businessMobile.map((item) => (
             <Link
               key={item.key}
-              href={`/compare/${item.key}`}
+              href={`/${country}/${locale}/compare/${item.key}`}
               className="block text-sm text-slate-700 py-1"
               onClick={() => setMobileOpen(false)}
             >
@@ -129,6 +160,16 @@ export function Navbar() {
 
           {/* Mobile bottom actions */}
           <div className="pt-4 mt-2 border-t border-slate-100 space-y-2.5">
+            {/* Country toggle */}
+            <Link
+              href={switchCountryHref}
+              className="flex items-center gap-2 text-sm text-slate-500 py-1"
+              onClick={() => setMobileOpen(false)}
+            >
+              <span>{country === "ae" ? "\uD83C\uDDF8\uD83C\uDDE6" : "\uD83C\uDDE6\uD83C\uDDEA"}</span>
+              {country === "ae" ? "Switch to KSA" : "Switch to UAE"}
+            </Link>
+
             {/* Language toggle */}
             <button className="flex items-center gap-2 text-sm text-slate-500 py-1">
               <Globe className="w-4 h-4" />
@@ -137,14 +178,14 @@ export function Navbar() {
 
             <div className="flex gap-2">
               <Link
-                href="/signup"
+                href={`/${country}/${locale}/signup`}
                 className="flex-1 text-center border border-navy/20 text-navy text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-navy hover:text-white transition-all"
                 onClick={() => setMobileOpen(false)}
               >
                 Sign In
               </Link>
               <Link
-                href="/eligibility"
+                href={`/${country}/${locale}/eligibility`}
                 className="flex-1 block bg-navy text-white text-sm font-semibold px-5 py-2.5 rounded-xl text-center"
                 onClick={() => setMobileOpen(false)}
               >

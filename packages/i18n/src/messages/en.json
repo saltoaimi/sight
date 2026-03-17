@@ -30,7 +30,10 @@
     "bankingCards": "Banking & Cards",
     "loansFinancing": "Loans & Mortgages",
     "wealthSavings": "Wealth & Savings",
-    "tools": "Tools"
+    "tools": "Tools",
+    "banking": "Banking",
+    "investing": "Investing",
+    "digitalFinance": "Digital Finance"
   },
   "categories": {
     "personal_loan": "Personal Loans",
@@ -66,7 +69,28 @@
     "trade_finance": "Trade Finance",
     "working_capital": "Working Capital",
     "pos_solutions": "POS Solutions",
-    "payment_gateway": "Payment Gateway"
+    "payment_gateway": "Payment Gateway",
+    "robo_advisor": "Robo-Advisors",
+    "stock_trading": "Stock Trading",
+    "crypto_exchange": "Crypto Exchanges",
+    "gold_trading": "Gold Trading",
+    "real_estate_crowdfunding": "Real Estate Crowdfunding",
+    "forex_card": "Forex Cards",
+    "prepaid_card": "Prepaid Cards",
+    "balance_transfer": "Balance Transfers",
+    "business_credit_card": "Business Credit Cards",
+    "education_loan": "Education Loans",
+    "kids_account": "Kids & Teen Accounts",
+    "salary_advance": "Salary Advance",
+    "digital_wallet": "Digital Wallets",
+    "loyalty_program": "Loyalty Programs",
+    "domestic_helper_insurance": "Domestic Helper Insurance",
+    "merchant_account": "Merchant Accounts",
+    "microfinance": "Microfinance",
+    "debt_crowdfunding": "Debt Crowdfunding",
+    "sah_sukuk": "Sah Savings Sukuk",
+    "hajj_umrah_financing": "Hajj & Umrah Financing",
+    "sakani_housing_support": "Sakani Housing Support"
   },
   "product": {
     "interestRate": "Interest Rate",

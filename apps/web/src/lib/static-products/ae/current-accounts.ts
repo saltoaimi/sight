@@ -1,0 +1,112 @@
+import { sid } from "../_helpers";
+import { providers } from "../_providers";
+
+export const currentAccounts: any[] = [
+  {
+    id: sid("ca", 1),
+    category: "current_account",
+    nameEn: "Emirates NBD Beyond Current Account",
+    nameAr: "حساب بيوند الجاري من بنك الإمارات دبي الوطني",
+    descriptionEn: "Premium current account with no minimum balance and free international transfers.",
+    provider: providers.enbd,
+    islamicCompliant: false,
+    imageUrl: null,
+    monthlyFee: "0",
+    minBalance: "0",
+    features: [
+      { en: "No minimum balance required" },
+      { en: "Free debit card with cashback" },
+      { en: "Online & mobile banking" },
+      { en: "Free international transfers via ENBD app" },
+    ],
+    fees: [
+      { nameEn: "Monthly Fee", amount: 0, type: "fixed" },
+    ],
+    eligibilityCriteria: {
+      minSalary: 3000,
+      nationalities: ["All nationalities"],
+      employmentTypes: ["Salaried", "Self-employed"],
+    },
+  },
+  {
+    id: sid("ca", 2),
+    category: "current_account",
+    nameEn: "FAB Gold Current Account",
+    nameAr: "الحساب الجاري الذهبي من بنك أبوظبي الأول",
+    descriptionEn: "FAB Gold current account offering premium banking benefits, airport lounge access, and preferential rates.",
+    provider: providers.fab,
+    islamicCompliant: false,
+    imageUrl: null,
+    monthlyFee: "50",
+    minBalance: "25000",
+    features: [
+      { en: "Complimentary airport lounge access" },
+      { en: "Free chequebook and demand drafts" },
+      { en: "Preferential FX rates" },
+      { en: "Dedicated relationship manager" },
+    ],
+    fees: [
+      { nameEn: "Monthly Fee", amount: 50, type: "fixed" },
+      { nameEn: "Below Min Balance Fee", amount: 50, type: "fixed" },
+    ],
+    eligibilityCriteria: {
+      minSalary: 10000,
+      nationalities: ["All nationalities"],
+      employmentTypes: ["Salaried", "Self-employed"],
+    },
+  },
+  {
+    id: sid("ca", 3),
+    category: "current_account",
+    nameEn: "Wio Current Account",
+    nameAr: "الحساب الجاري من ويو",
+    descriptionEn: "100% digital current account from Wio Bank with zero fees and instant account opening.",
+    provider: providers.wio,
+    islamicCompliant: false,
+    imageUrl: null,
+    monthlyFee: "0",
+    minBalance: "0",
+    features: [
+      { en: "Open account in under 5 minutes" },
+      { en: "Zero monthly fees" },
+      { en: "Free virtual and physical debit card" },
+      { en: "Real-time spending insights" },
+      { en: "CBUAE regulated" },
+    ],
+    fees: [
+      { nameEn: "Monthly Fee", amount: 0, type: "fixed" },
+    ],
+    eligibilityCriteria: {
+      minSalary: 0,
+      nationalities: ["UAE nationals", "UAE residents"],
+      employmentTypes: ["Salaried", "Self-employed", "Freelancer"],
+    },
+  },
+  {
+    id: sid("ca", 4),
+    category: "current_account",
+    nameEn: "RAKBANK Everyday Current Account",
+    nameAr: "الحساب الجاري اليومي من راك بنك",
+    descriptionEn: "Simple everyday current account from RAKBANK with low minimum balance and cashback rewards.",
+    provider: providers.rakbank,
+    islamicCompliant: false,
+    imageUrl: null,
+    monthlyFee: "25",
+    minBalance: "5000",
+    features: [
+      { en: "Cashback on debit card transactions" },
+      { en: "Free online bill payments" },
+      { en: "Multi-currency account support" },
+      { en: "24/7 customer support" },
+    ],
+    fees: [
+      { nameEn: "Monthly Fee", amount: 25, type: "fixed" },
+      { nameEn: "Below Min Balance Fee", amount: 25, type: "fixed" },
+    ],
+    eligibilityCriteria: {
+      minSalary: 3000,
+      nationalities: ["All nationalities"],
+      employmentTypes: ["Salaried", "Self-employed"],
+    },
+  },
+];

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./logo";
+import { countryConfig, type Country } from "@sight/shared";
 
 const footerLinks = {
   "Loans & Cards": [
@@ -40,7 +41,9 @@ const footerLinks = {
   ],
 };
 
-export function Footer() {
+export function Footer({ country }: { country: Country }) {
+  const config = countryConfig[country];
+
   return (
     <footer className="bg-navy text-white">
       <div className="max-w-[1280px] mx-auto px-5 md:px-10 py-16">
@@ -49,7 +52,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo variant="white" className="mb-4" />
             <p className="text-xs text-slate-400 leading-relaxed">
-              Compare every financial product in the UAE.
+              Compare every financial product in {config.nameEn}.
             </p>
           </div>
           {/* Link columns */}

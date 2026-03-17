@@ -1,4 +1,4 @@
-import { getStaticProducts } from "@/lib/static-products";
+import { getStaticProducts } from "@/lib/static-products/index";
 import { ProductFilters } from "@/components/product-filters";
 import { getTranslations } from "next-intl/server";
 

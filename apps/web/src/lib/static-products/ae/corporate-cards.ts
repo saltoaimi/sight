@@ -1,0 +1,77 @@
+import { sid } from "../_helpers";
+import { providers } from "../_providers";
+
+export const corporateCards: any[] = [
+  {
+    id: sid("cc", 1),
+    category: "corporate_card",
+    nameEn: "Emirates NBD Corporate Card",
+    nameAr: "البطاقة المؤسسية من بنك الإمارات دبي الوطني",
+    descriptionEn: "Premium corporate credit card from Emirates NBD with expense management tools and travel benefits.",
+    provider: providers.enbd,
+    islamicCompliant: false,
+    imageUrl: null,
+    annualFee: "500",
+    cashbackRate: "1.00",
+    rewardType: "cashback",
+    features: [
+      { en: "1% cashback on all business purchases" },
+      { en: "Complimentary airport lounge access" },
+      { en: "Detailed expense reporting and analytics" },
+      { en: "Supplementary cards for employees at no extra cost" },
+    ],
+    fees: [
+      { nameEn: "Annual Fee", amount: 500, type: "fixed" },
+      { nameEn: "Late Payment Fee", amount: 200, type: "fixed" },
+      { nameEn: "Foreign Currency Transaction Fee", amount: 2.75, type: "percentage" },
+    ],
+  },
+  {
+    id: sid("cc", 2),
+    category: "corporate_card",
+    nameEn: "FAB Business Credit Card",
+    nameAr: "بطاقة الأعمال الائتمانية من بنك أبوظبي الأول",
+    descriptionEn: "FAB's business credit card with high cashback rates, travel insurance and employee spend controls.",
+    provider: providers.fab,
+    islamicCompliant: false,
+    imageUrl: null,
+    annualFee: "400",
+    cashbackRate: "1.50",
+    rewardType: "cashback",
+    features: [
+      { en: "1.5% cashback on international spend" },
+      { en: "Complimentary travel insurance up to USD 500K" },
+      { en: "Set individual spending limits per card" },
+      { en: "Interest-free grace period up to 55 days" },
+    ],
+    fees: [
+      { nameEn: "Annual Fee", amount: 400, type: "fixed" },
+      { nameEn: "Cash Advance Fee", amount: 3, type: "percentage" },
+      { nameEn: "Late Payment Fee", amount: 150, type: "fixed" },
+    ],
+  },
+  {
+    id: sid("cc", 3),
+    category: "corporate_card",
+    nameEn: "ADCB Corporate Platinum Card",
+    nameAr: "البطاقة المؤسسية البلاتينية من بنك أبوظبي التجاري",
+    descriptionEn: "ADCB's corporate platinum card offering reward points, expense control and comprehensive travel benefits.",
+    provider: providers.adcb,
+    islamicCompliant: false,
+    imageUrl: null,
+    annualFee: "750",
+    cashbackRate: "0.75",
+    rewardType: "points",
+    features: [
+      { en: "Earn 1 reward point per AED 1 spent" },
+      { en: "Points redeemable for flights, hotels and cashback" },
+      { en: "Priority Pass airport lounge membership" },
+      { en: "Purchase protection and extended warranty" },
+    ],
+    fees: [
+      { nameEn: "Annual Fee", amount: 750, type: "fixed" },
+      { nameEn: "Supplementary Card Fee", amount: 250, type: "fixed" },
+      { nameEn: "Foreign Currency Transaction Fee", amount: 2.5, type: "percentage" },
+    ],
+  },
+];

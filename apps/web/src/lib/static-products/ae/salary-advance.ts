@@ -1,0 +1,85 @@
+import { sid } from "../_helpers";
+import { providers } from "../_providers";
+
+export const salaryAdvance: any[] = [
+  {
+    id: sid("sal", 1),
+    category: "salary_advance",
+    nameEn: "FlexxPay Salary Advance",
+    nameAr: "سلفة الراتب من فلكس باي",
+    descriptionEn: "Access your earned salary before payday with FlexxPay. Employer-integrated platform with instant transfers to your bank account.",
+    provider: providers.flexxpay,
+    islamicCompliant: false,
+    imageUrl: null,
+    features: [
+      { en: "Access up to 50% of earned salary early" },
+      { en: "Instant transfer to your bank account" },
+      { en: "No credit check required" },
+      { en: "Employer-integrated — deducted from next payroll" },
+      { en: "Available 24/7 via mobile app" },
+    ],
+    fees: [
+      { nameEn: "Advance Fee", amount: 1.5, type: "percentage" },
+      { nameEn: "Instant Transfer Fee", amount: 5, type: "fixed" },
+    ],
+  },
+  {
+    id: sid("sal", 2),
+    category: "salary_advance",
+    nameEn: "Pyypl Salary Advance",
+    nameAr: "سلفة الراتب من بيبل",
+    descriptionEn: "Get early access to your wages through the Pyypl app with a simple flat fee and no hidden charges.",
+    provider: providers.pyypl,
+    islamicCompliant: false,
+    imageUrl: null,
+    features: [
+      { en: "Advance up to AED 2,500 per cycle" },
+      { en: "Flat fee per advance — no interest" },
+      { en: "Funds loaded to Pyypl wallet instantly" },
+      { en: "Automatic repayment on salary date" },
+      { en: "No paperwork or credit check" },
+    ],
+    fees: [
+      { nameEn: "Flat Advance Fee", amount: 15, type: "fixed" },
+      { nameEn: "Bank Transfer Fee", amount: 3, type: "fixed" },
+    ],
+  },
+  {
+    id: sid("sal", 3),
+    category: "salary_advance",
+    nameEn: "YAP Salary Advance",
+    nameAr: "سلفة الراتب من ياب",
+    descriptionEn: "YAP Salary Advance lets you withdraw part of your earned pay anytime with a small flat fee and zero interest.",
+    provider: providers.yap,
+    islamicCompliant: false,
+    imageUrl: null,
+    features: [
+      { en: "Advance up to AED 5,000 per month" },
+      { en: "Zero interest — flat fee per transaction" },
+      { en: "Funds available in YAP account instantly" },
+      { en: "Track earned and available salary in real-time" },
+      { en: "Fully digital — no branch visits" },
+    ],
+    fees: [
+      { nameEn: "Flat Advance Fee", amount: 10, type: "fixed" },
+    ],
+  },
+  {
+    id: sid("sal", 4),
+    category: "salary_advance",
+    nameEn: "Wio Early Salary",
+    nameAr: "الراتب المبكر من ويو",
+    descriptionEn: "Wio Bank's Early Salary feature gives you access to your upcoming salary a few days before payday at no extra cost.",
+    provider: providers.wio,
+    islamicCompliant: false,
+    imageUrl: null,
+    features: [
+      { en: "Get your salary up to 2 days early" },
+      { en: "No fees — included with Wio account" },
+      { en: "Automatic salary detection and advance" },
+      { en: "Available for WPS salary transfers" },
+      { en: "Manage everything via Wio app" },
+    ],
+    fees: [],
+  },
+];

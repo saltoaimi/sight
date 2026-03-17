@@ -30,7 +30,10 @@
     "bankingCards": "الحسابات والبطاقات",
     "loansFinancing": "القروض والتمويل العقاري",
     "wealthSavings": "الادخار والاستثمار",
-    "tools": "أدوات"
+    "tools": "أدوات",
+    "banking": "الحسابات المصرفية",
+    "investing": "الاستثمار",
+    "digitalFinance": "التمويل الرقمي"
   },
   "categories": {
     "personal_loan": "القروض الشخصية",
@@ -66,7 +69,28 @@
     "working_capital": "رأس المال العامل",
     "pos_solutions": "حلول نقاط البيع",
     "payment_gateway": "بوابة الدفع",
-    "bnpl": "اشتر الآن وادفع لاحقاً"
+    "robo_advisor": "المستشار الآلي",
+    "stock_trading": "تداول الأسهم",
+    "crypto_exchange": "منصات العملات الرقمية",
+    "gold_trading": "تداول الذهب",
+    "real_estate_crowdfunding": "التمويل الجماعي العقاري",
+    "forex_card": "بطاقات العملات الأجنبية",
+    "prepaid_card": "البطاقات مسبقة الدفع",
+    "balance_transfer": "تحويل الرصيد",
+    "business_credit_card": "بطاقات ائتمان الأعمال",
+    "education_loan": "قروض التعليم",
+    "kids_account": "حسابات الأطفال والمراهقين",
+    "salary_advance": "سلفة الراتب",
+    "digital_wallet": "المحافظ الرقمية",
+    "loyalty_program": "برامج الولاء",
+    "domestic_helper_insurance": "تأمين العمالة المنزلية",
+    "merchant_account": "حسابات التجار",
+    "bnpl": "اشتر الآن وادفع لاحقاً",
+    "microfinance": "التمويل الأصغر",
+    "debt_crowdfunding": "التمويل الجماعي بالدين",
+    "sah_sukuk": "صكوك ادخارية (صح)",
+    "hajj_umrah_financing": "تمويل الحج والعمرة",
+    "sakani_housing_support": "برنامج سكني للإسكان"
   },
   "product": {
     "interestRate": "معدل الفائدة",

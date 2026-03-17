@@ -4,7 +4,8 @@ import {
   Banknote, CreditCard, Home, Car, Shield, Heart,
   Building2, PiggyBank, BadgeDollarSign, TrendingUp,
   Smartphone, Send, Wallet, HeartPulse, Plane, Wifi,
-  ArrowRight,
+  ArrowRight, Bot, Bitcoin, BarChart3, ArrowLeftRight,
+  Gift, Baby,
 } from "lucide-react";
 import { EligibilityWidget } from "@/components/eligibility-widget";
 
@@ -19,17 +20,19 @@ const featuredCategories = [
   { key: "fixed_deposit", icon: BadgeDollarSign, desc: "Lock in high returns" },
   { key: "mobile_plan", icon: Smartphone, desc: "du, e& & Virgin plans" },
   { key: "business_loan", icon: Building2, desc: "SME & business finance" },
-  { key: "life_insurance", icon: HeartPulse, desc: "Term & whole life cover" },
-  { key: "bnpl", icon: Wallet, desc: "Tabby, Tamara & more" },
+  { key: "robo_advisor", icon: Bot, desc: "Sarwa, StashAway & more" },
+  { key: "crypto_exchange", icon: Bitcoin, desc: "VARA-regulated exchanges" },
 ];
 
 const quickLinks = [
   { label: "Travel Insurance", href: "/compare/travel_insurance", icon: Plane },
-  { label: "Home Insurance", href: "/compare/home_insurance", icon: Home },
+  { label: "Stock Trading", href: "/compare/stock_trading", icon: BarChart3 },
+  { label: "Digital Wallets", href: "/compare/digital_wallet", icon: Wallet },
+  { label: "Balance Transfers", href: "/compare/balance_transfer", icon: ArrowLeftRight },
   { label: "Home Internet", href: "/compare/home_internet", icon: Wifi },
-  { label: "Investments", href: "/compare/investment_account", icon: TrendingUp },
+  { label: "Loyalty Programs", href: "/compare/loyalty_program", icon: Gift },
   { label: "Money Transfer", href: "/compare/remittance", icon: Send },
-  { label: "Corporate Cards", href: "/compare/corporate_card", icon: CreditCard },
+  { label: "Kids Accounts", href: "/compare/kids_account", icon: Baby },
 ];
 
 export default function HomePage() {
@@ -68,11 +71,11 @@ export default function HomePage() {
               {/* Quick stats */}
               <div className="mt-10 flex gap-8">
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">26+</p>
+                  <p className="text-2xl font-bold text-slate-900">40+</p>
                   <p className="text-xs text-slate-400">Providers</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-slate-900">169+</p>
+                  <p className="text-2xl font-bold text-slate-900">250+</p>
                   <p className="text-xs text-slate-400">Products</p>
                 </div>
                 <div>

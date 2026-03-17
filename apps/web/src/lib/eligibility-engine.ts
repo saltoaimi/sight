@@ -3,7 +3,7 @@
  * Uses static product data when the API is unavailable.
  */
 
-import { getStaticProducts } from "./static-products";
+import { getStaticProducts } from "./static-products/index";
 
 interface EligibilityAnswers {
   type?: "personal" | "business";
